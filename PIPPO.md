@@ -1,2 +1,2 @@
-Ciao io sono Pippo
-Io sono Tommaso
+Ciao io sono Pippo (quello vero)
+Ciao Pippo (quello vero)
