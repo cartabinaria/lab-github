@@ -6,8 +6,8 @@
 
 # --- 1. DEFINIZIONE DEI NOMI DEI FILE ---
 # Definisci qui i nomi esatti dei file che vuoi stampare.
-FILE1="primo_file.txt"
-FILE2="secondo_file.log"
+FILE1="cheatsheetTerm1.md"
+FILE2="cheatsheetTerm2.md"
 # ----------------------------------------
 
 echo "Esecuzione dello script nella cartella: $(pwd)"
