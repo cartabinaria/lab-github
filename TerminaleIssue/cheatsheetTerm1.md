@@ -1,13 +1,13 @@
 ### Elenca i file
 
 ```sh
-ls
+ls /path/to/directory
 ```
 
 ### Entrare in una cartella
 
 ```sh
-cd
+cd /path/to/directory
 ```
 
 ### Uscire da una cartella
@@ -19,110 +19,110 @@ cd ..
 ### Creare una cartella
 
 ```sh
-mkdir
+mkdir /path/to/new_directory
 ```
 
 ### Creare file
 
 ```sh
-touch
+touch /path/to/new_file.txt
 ```
 
 ### Controllare di che tipo è un file
 
 ```sh
-file
+file /path/to/executable
 ```
 
 ### Copiare file
 
 ```sh
-cp
+cp /path/to/source_file.txt /path/to/destination_directory/
 ```
 
 ### Spostare file
 
 ```sh
-mv
+mv /path/to/source_file.txt /path/to/destination_directory/
 ```
 
 ### Rinominare file
 
 ```sh
-mv
+mv /path/to/old_name.txt /path/to/new_name.txt
 ```
 
 ### Eliminare file
 
 ```sh
-rm
+rm /path/to/file_to_delete.txt
 ```
 
 ### Copiare una cartella
 
 ```sh
-cp -r
+cp -r /path/to/source_folder /path/to/destination_folder/
 ```
 
 ### Manuale di un comando
 
 ```sh
-man
+man ls
 ```
 
 ### Leggere un file di testo
 
 ```sh
-less
+less /path/to/text_file.txt
 ```
 
 ### Nano e Vim
 
 ```sh
-nano
-vim
+nano /path/to/file.txt
+vim /path/to/another_file.txt
 ```
 
 ### Contare caratteri
 
 ```sh
-wc
+wc -l /path/to/file.txt
 ```
 
 ### Ricerca di una stringa
 
 ```sh
-grep
+grep "string" /path/to/file.txt
 ```
 
 ### Concatenazione o lettura
 
 ```sh
-cat
+cat /path/to/file.txt
 ```
 
 ### Testa e coda
 
 ```sh
-head
-tail
+head /path/to/log_file.txt
+tail -f /path/to/another_log.log
 ```
 
 ### Wildcard
 
 ```sh
-cp _ /scripts
-ls -d ca**
-cat _
-cat *
+cp *.txt /path/to/destination/
+ls -d dir*
+cat file?.txt
+cat *.log
 ```
 
 ### Cambiare owner e group
 
 ```sh
-chmod
-chown
-chgrp
+chmod 755 /path/to/script.sh
+chown user:group /path/to/file.txt
+chgrp group /path/to/file.txt
 ```
 
 ### Pipe
@@ -134,5 +134,5 @@ ls /bin | less
 ### Ridezione su file
 
 ```sh
-comando > file
+comando > /path/to/output_file.txt
 ```

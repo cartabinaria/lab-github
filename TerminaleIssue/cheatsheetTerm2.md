@@ -6,77 +6,75 @@
 
 ## Output
 
-Normale output di un comando, può essere visto come un file e usato su pipe e ridirezione. > distruttiva, >> appende in fondo al file.
+Normale output di un comando, può essere visto come un file e usato su pipe e ridirezione. `>` distruttiva, `>>` appende in fondo al file.
 
 ```bash
-ls > file1 > file2
+comando > /path/to/output_file.txt
 ```
 
 ## Error
 
 ```bash
-ls ifnrigor > mangusta
+comando_che_genera_errore > /path/to/output.txt
 ```
 
-Il file mangusta viene creato (l’esecuzione non si ferma all’errore) ma mangusta non conterrà l’errore del comando perché non è `stdout`.
+Il file `output.txt` viene creato (l’esecuzione non si ferma all’errore) ma `output.txt` non conterrà l’errore del comando perché non è `stdout`.
 
 ```bash
-ls ifnrigor > mangusta 2>&1
+comando_che_genera_errore > /path/to/output_and_error.txt 2>&1
 ```
 
-Ridirezionare lo `stderr` sullo stdout: `2>&1` . Non mostra messaggio di errore e ora mangusta contiene l’errore di ls.
+Ridirezionare lo `stderr` sullo stdout: `2>&1` . Non mostra messaggio di errore e ora `output_and_error.txt` contiene l’errore del comando.
 
 ```bash
-ls ifnrigor > mangusta 2>1
+comando_che_genera_errore > /path/to/output.txt 2> /path/to/error_file.txt
 ```
 
-Crea un file di nome 1 e mangusta è vuoto. Ha preso `2>1` come: prendi lo `stderr` e mettilo nel file 1.
+Crea un file di nome `error_file.txt` e `output.txt` è vuoto. Ha preso `2> /path/to/error_file.txt` come: prendi lo `stderr` e mettilo nel file specificato.
 
 ```bash
-ls ifnrigor > mangusta 2>/dev/null
+comando_che_genera_errore > /path/to/output.txt 2>/dev/null
 ```
 
-Butta tutti gli errori dentro /dev/null e non saranno più recuperabili.
+Butta tutti gli errori dentro `/dev/null` e non saranno più recuperabili.
 
 ## Echo
 
 ```bash
-echo */lontra
+echo /path/to/*/pattern
 ```
 
-Stampa tutti i percorsi relativi delle sottocartelle (o cartelle) chiamate lontra.
+Stampa tutti i percorsi relativi delle sottocartelle (o cartelle) che corrispondono a `pattern` all'interno di `/path/to/`.
 
 ```bash
-echo {1..1}
+echo {1..10}
 echo {a..z}
 ```
 
 Stampa tutti i numeri e caratteri in mezzo ai valori definiti.
 
 ```bash
- file $(ls -d /bin/* | grep zip)
+file $(ls -d /bin/* | grep utility_name)
+file $(find /path/to/binaries -name "program_name" -print)
 ```
 
-Permette di stampare tutti i file che hanno dentro zip e sono locati dentro `/bin/*`. Questa sintassi è necessaria per rispettare la sintassi di `file` .
+Il primo esempio stampa informazioni sui file che corrispondono a `utility_name` tra gli eseguibili in `/bin/`. Il secondo esempio trova il percorso di un `program_name` in `/path/to/binaries` e stampa il tipo di file. Questa sintassi è necessaria per rispettare la sintassi di `file`.
 
 # Variabili
 
 ```bash
-$ set src castoro
-$ set dest capybara
-$ echo $dest
-capybara
-$ echo $src
-castoro
-$ cp -r $src $dest
-$ ls
-1  capybara  castoro  file1  file2  mangusta
+set src "/path/to/source_folder"
+set dest "/path/to/destination_folder"
+echo "$dest"
+echo "$src"
+cp -r "$src" "$dest"
+ls /path/to/directory
 ```
 
-set copia le cartelle nelle variabili locali, e cp copia le cartelle ricorsivamente l’una dentro l’altra.
+`set` copia i valori nelle variabili locali, e `cp` copia le cartelle ricorsivamente l’una dentro l’altra.
 
 ```bash
-bash -c [comando]
+bash -c "comando con argomenti"
 ```
 
 Lancia un comando in una nuova shell.
@@ -88,18 +86,19 @@ Le variabili custom vengono eliminate al riavvio del computer.
 Per specificare che interprete usare:
 
 ```bash
- #!/bin/bash
+#!/bin/bash
 ```
 
-Specifica l’interprete da usare nella prima riga del file. Dice al terminale che stiamo creando un file di scripting. Non è necessario chiamare i file di scripting \*.sh e definire le variabili maiuscole.
+Specifica l’interprete da usare nella prima riga del file. Dice al terminale che stiamo creando un file di scripting. Non è necessario chiamare i file di scripting `*.sh` e definire le variabili maiuscole.
 
 ```bash
 #!/bin/bash
 echo "Reading programs"
 PROG=$(ls -d /bin/*)
 NUM=$(echo "$PROG" | grep "ca" | wc -l)
+echo "Number of programs containing 'ca': $NUM"
 ```
 
-`NUM=$(echo "$PROG" | grep "ca" | wc -l)` stampa il contenuto di $NUM, che conterrà il numero di programmi che iniziano con ca. La variabile $NUM rimane locale all’esecuzione dello script, non posso neanche usare export perché viene trasposta ai processi figli di quel nuovo terminale creato all’inizio dello script.
+`NUM=$(echo "$PROG" | grep "ca" | wc -l)` stampa il contenuto di `$NUM`, che conterrà il numero di programmi che iniziano con `ca`. La variabile `$NUM` rimane locale all’esecuzione dello script, non posso neanche usare `export` perché viene trasposta ai processi figli di quel nuovo terminale creato all’inizio dello script.
 
-`chmod +100` permesso di esecuzione a user e 0 agli altri.
+`chmod +x /path/to/my_script.sh` permesso di esecuzione a user.
