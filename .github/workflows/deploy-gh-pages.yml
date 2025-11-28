@@ -22,9 +22,8 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: 25
-      - run: cd site
-      - run: npm ci # like install but for automation
-      - run: npm run build
+      - run: cd site && npm ci # like install but for automation
+      - run: cd site && npm run build
       - name: Upload artifact
         # https://github.com/actions/upload-pages-artifact
         uses: actions/upload-pages-artifact@v4
