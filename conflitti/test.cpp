@@ -1,4 +1,4 @@
-#include <cstdlib>
+#include <ctime>
 #include <iostream>
 
 int main() {
@@ -10,6 +10,6 @@ int main() {
 		std::cout << "ERR: Errore in esecuzione\n";
 		return 1;
 	}
-	std::cout << "Test OK\n";
+	std::cout << "Test OK ciao\n";
 	return 0;
 }
